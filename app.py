@@ -2,8 +2,17 @@ import os
 from voila.app import Voila
 
 # Create Voila instance
-voila_app = Voila()
+voila_app = Voila.instance()
 
-# Set Voila configuration options
-voila_app.root_dir = os.getcwd()  # Set root directory
-voila_app.launch_instance(argv=["--no-browser", "--port=8866", "--strip_sources=False", "main.ipynb"])
+# Set up Voila's launch arguments to disable the browser and expose the server
+voila_args = [
+    "--no-browser",  # Do not open a browser (headless server mode)
+    "--strip_sources=False",  # Keep code visible in the dashboard
+    "main.ipynb"  # Replace with the name of your notebook
+]
+
+# Launch Voila instance
+voila_app.initialize(voila_args)
+
+# Start the Voila server (this will bind to localhost initially)
+voila_app.start()
