@@ -1,1 +1,1 @@
-web: gunicorn -b 0.0.0.0:$PORT app:voila_app
+web: gunicorn app:voila_app --bind 0.0.0.0:$PORT
